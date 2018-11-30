@@ -1,40 +1,8 @@
-/*import 'babel-polyfill';
-import _ from 'lodash';
-
-import './../sass/styles.scss';
-
-const getHeader = () => {
-  const helloWebpack = _.join(['Hello', 'webpack!'], ' ');
-  console.log(helloWebpack);
-  const element = document.createElement('h1');
-
-  element.innerHTML = helloWebpack;
-
-  return element;
-};
-
-document.body.appendChild(getHeader());
-
-const o = {
-  foo: {
-    bar: null
-  }
-};
-
-console.log(o?.foo?.bar?.baz ?? 'default');*/
-
 import './../sass/styles.scss';
 
 VK.init({
   apiId: 6765635
 });
-
-/*function auth() {
-    VK.Auth.login();
-}
-
-auth();*/
-
 
 function auth() {
     return new Promise ((resolve, reject) => {
@@ -82,7 +50,6 @@ auth()
 
             filterInput.addEventListener('keyup', function () {
                 let value = filterInput.value;
-            /*    let filteredFriends = info.filter(friend => isMatching(friend.first_name, value));*/
                 let filteredFriends = info.filter(function (friend) {
                     isMatching(`${friend.first_name} ${friend.last_name}`, value);
                 });
@@ -91,9 +58,6 @@ auth()
                   return renderFriends(filteredFriends[i]);
                 }
             })
-            /*for (let i = 0; i < filteredFriends.length; i++) {
-                renderFriends(filteredFriends[i]);
-            }*/
     });
 
 let filterInput = document.querySelector('.search__input-left');
@@ -125,24 +89,6 @@ function isMatching(full, chunk) {
     return full.toLowerCase().indexOf(chunk.toLowerCase()) > -1;
 }
 
-/*let btn = document.querySelector('.container__btn');
 
-btn.addEventListener('click', function () {
-    renderFriends();
-});*/
-
-/*let btn = document.querySelector('.filter__container-btn');
-let wrapper = document.querySelector('.filter__container-wrapper');
-
-function friendsRender() {
-    let li = document.createElement('div');
-    li.classList.add('filter__friend');
-    wrapper.appendChild(li);
-    return li;
-}
-
-btn.addEventListener('click', function () {
-    friendsRender();
-});*/
 
 
