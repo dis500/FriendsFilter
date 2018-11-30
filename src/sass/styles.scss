@@ -1,0 +1,156 @@
+.filter{
+  width: 620px;
+  height: 490px;
+
+}
+
+.header{
+  position: relative;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 10px;
+  background-color: #ff8663;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    top: 22px;
+    right: 15px;
+    width: 14px;
+    height: 4px;
+    background-color: #ffffff;
+  }
+
+  &::before{
+    transform: rotate(45deg);
+  }
+
+  &::after{
+    transform: rotate(-45deg);
+  }
+}
+
+.header__title{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.search{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #f0f0f0;
+}
+
+.search__input{
+  width: 285px;
+  height: 25px;
+  padding-left: 10px;
+  border-radius: 20px;
+  border-width: 0;
+}
+
+.container{
+  display: flex;
+  height: 355px;
+}
+
+.container__block{
+  width: 50%;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+.container__text{
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.container__wrapper{
+  width: 288px;
+  height: 320px;
+  overflow: auto;
+}
+
+.container__item{
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  width: 250px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.container__item-text{
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.container__item-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.container__item-btn{
+  position:absolute;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  cursor: pointer;
+
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 3px;
+    background-color: #c4c4c4;
+  }
+
+  &::before{
+    top: 6px;
+  }
+
+  &::after{
+    top: 6px;
+    transform: rotate(90deg);
+  }
+}
+
+.footer{
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px;
+  background-color: #f0f0f0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.footer__btn{
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #ffffff;
+  background-color: #ff8663;
+  border: 0;
+  border-radius: 10px;
+}
+
