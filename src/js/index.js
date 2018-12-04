@@ -129,7 +129,7 @@ auth()
 
             zone2.addEventListener('drop', function (e) {
                 zone2.appendChild(currentDrag.node);
-                console.log('sdfsdf');
+                console.log('закончил тащить');
             });
         }
 
