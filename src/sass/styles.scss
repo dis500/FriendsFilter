@@ -90,6 +90,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
   border-top: 2px solid #f0f0f0;
+  cursor: pointer;
 }
 
 .container__item-text{
@@ -105,7 +106,7 @@
   border-radius: 50%;
 }
 
-.container__item-btn{
+.container__item-btn--add{
   position:absolute;
   right: 10px;
   width: 16px;
@@ -129,6 +130,34 @@
   &::after{
     top: 6px;
     transform: rotate(90deg);
+  }
+}
+
+.container__item-btn--delete{
+  position:absolute;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  cursor: pointer;
+
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 3px;
+    background-color: #c4c4c4;
+  }
+
+  &::before{
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+
+  &::after{
+    top: 6px;
+    transform: rotate(45deg);
   }
 }
 
