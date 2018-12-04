@@ -1,28 +1,3 @@
-/*import 'babel-polyfill';
-import _ from 'lodash';
-
-import './../sass/styles.scss';
-
-const getHeader = () => {
-  const helloWebpack = _.join(['Hello', 'webpack!'], ' ');
-  console.log(helloWebpack);
-  const element = document.createElement('h1');
-
-  element.innerHTML = helloWebpack;
-
-  return element;
-};
-
-document.body.appendChild(getHeader());
-
-const o = {
-  foo: {
-    bar: null
-  }
-};
-
-console.log(o?.foo?.bar?.baz ?? 'default');*/
-
 import './../sass/styles.scss';
 
 let filterInput = document.querySelector('.search__input-left');
@@ -83,6 +58,7 @@ auth()
             filterInput.addEventListener('keyup', function () {
                 let value = filterInput.value;
             /!*    let filteredFriends = info.filter(friend => isMatching(friend.first_name, value));*!/
+
                 let filteredFriends = info.filter(function (friend) {
                    return isMatching(`${friend.first_name} ${friend.last_name}`, value);
                 });
@@ -130,6 +106,7 @@ auth()
                 for (let i = 0; i < rightListArray.length; i++) {
                     renderRightFriends(rightListArray[i]);
                 }
+
 
                 firstZone.innerHTML = '';
 
@@ -188,7 +165,6 @@ auth()
         }*/
 
        /* makeDnD([firstZone, secondZone]);*/
-
     });
 
 function renderLeftFriends(friends) {
@@ -243,6 +219,7 @@ function isMatching(full, chunk) {
     return full.toLowerCase().indexOf(chunk.toLowerCase()) > -1;
 }
 
+
 /*function makeDnD(zones) {
     let currentDrag;
 
@@ -277,24 +254,8 @@ function isMatching(full, chunk) {
     });
 }*/
 
-/*let btn = document.querySelector('.container__btn');
 
-btn.addEventListener('click', function () {
-    renderFriends();
-});*/
 
-/*let btn = document.querySelector('.filter__container-btn');
-let wrapper = document.querySelector('.filter__container-wrapper');
 
-function friendsRender() {
-    let li = document.createElement('div');
-    li.classList.add('filter__friend');
-    wrapper.appendChild(li);
-    return li;
-}
-
-btn.addEventListener('click', function () {
-    friendsRender();
-});*/
 
 
