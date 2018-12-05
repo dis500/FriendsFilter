@@ -1,6 +1,7 @@
 import './../sass/styles.scss';
 
-let filterInput = document.querySelector('.search__input-left');
+let leftFilterInput = document.querySelector('.search__input-left');
+let rightFilterInput = document.querySelector('.search__input-right');
 let firstZone = document.querySelector('.container__wrapper-left');
 let secondZone = document.querySelector('.container__wrapper-right');
 
@@ -55,11 +56,11 @@ auth()
                  renderLeftFriends(leftListArray[i]);
             }
 
-            filterInput.addEventListener('keyup', function () {
-                let value = filterInput.value;
+            leftFilterInput.addEventListener('keyup', function () {
+                let value = leftFilterInput.value;
             /!*    let filteredFriends = info.filter(friend => isMatching(friend.first_name, value));*!/
 
-                let filteredFriends = info.filter(function (friend) {
+                let filteredFriends = leftListArray.filter(function (friend) {
                    return isMatching(`${friend.first_name} ${friend.last_name}`, value);
                 });
 
@@ -67,6 +68,20 @@ auth()
 
                 for (let i = 0; i < filteredFriends.length; i++) {
                    renderLeftFriends(filteredFriends[i]);
+                }
+            });
+
+            rightFilterInput.addEventListener('keyup', function () {
+               let value = rightFilterInput.value;
+
+                let filteredFriends = rightListArray.filter(function (friend) {
+                    return isMatching(`${friend.first_name} ${friend.last_name}`, value);
+                });
+
+                secondZone.innerHTML = '';
+
+                for (let i = 0; i < filteredFriends.length; i++) {
+                    renderRightFriends(filteredFriends[i]);
                 }
             });
 
@@ -107,7 +122,6 @@ auth()
                     renderRightFriends(rightListArray[i]);
                 }
 
-
                 firstZone.innerHTML = '';
 
                 for (let i = 0; i < leftListArray.length; i++) {
@@ -116,7 +130,7 @@ auth()
             }
         });
 
-        function makeDnD(zone1, zone2) {
+        function makeDnDRight(zone1, zone2) {
             zone1.addEventListener('dragstart', function (e) {
              /*   e.target.style.backgroundColor = '#f0f0f0';*/
                 currentDrag = {node: e.target};
@@ -127,13 +141,72 @@ auth()
                 e.preventDefault();
             });
 
+            zone2.addEventListener('dragover', function (e) {
+                e.preventDefault();
+            });
+
             zone2.addEventListener('drop', function (e) {
-                zone2.appendChild(currentDrag.node);
-                console.log('закончил тащить');
+                /*zone2.appendChild(currentDrag.node);*/
+                let id = Number(currentDrag.node.getAttribute('data-id'));
+                let index = leftListArray.findIndex(friend => friend.id === id);
+                rightListArray.push(leftListArray[index]);
+                leftListArray.splice(index, 1);
+                console.log(rightListArray);
+
+                firstZone.innerHTML = '';
+
+                for (let i = 0; i < leftListArray.length; i++) {
+                    renderLeftFriends(leftListArray[i]);
+                }
+
+                secondZone.innerHTML = '';
+
+                for (let i = 0; i < rightListArray.length; i++) {
+                    renderRightFriends(rightListArray[i]);
+                }
             });
         }
 
-        makeDnD(firstZone, secondZone);
+        makeDnDRight(firstZone, secondZone);
+
+        function makeDnDLeft(zone1, zone2) {
+            zone2.addEventListener('dragstart', function (e) {
+                /!*   e.target.style.backgroundColor = '#f0f0f0';*!/
+                currentDrag = {node: e.target};
+                console.log('начал тащить');
+            });
+
+            zone2.addEventListener('dragover', function (e) {
+                e.preventDefault();
+            });
+
+            zone1.addEventListener('dragover', function (e) {
+                e.preventDefault();
+            });
+
+            zone1.addEventListener('drop', function (e) {
+                /!*zone2.appendChild(currentDrag.node);*!/
+                let id = Number(currentDrag.node.getAttribute('data-id'));
+                let index = rightListArray.findIndex(friend => friend.id === id);
+                leftListArray.push(rightListArray[index]);
+                rightListArray.splice(index, 1);
+                console.log(rightListArray);
+
+                secondZone.innerHTML = '';
+
+                for (let i = 0; i < rightListArray.length; i++) {
+                    renderRightFriends(rightListArray[i]);
+                }
+
+                firstZone.innerHTML = '';
+
+                for (let i = 0; i < leftListArray.length; i++) {
+                    renderLeftFriends(leftListArray[i]);
+                }
+            });
+        }
+
+        makeDnDLeft(firstZone, secondZone);
 
         /*function makeDnD(zones) {
             let currentDrag;
@@ -154,6 +227,10 @@ auth()
 
                         if (currentDrag.source !== secondZone) {
                             if (currentDrag.node.classList.contains('container__item')) {
+                                let id = Number(target.getAttribute('data-id'));
+                                let index = leftListArray.findIndex(friend => friend.id === id);
+                                rightListArray.push(leftListArray[index]);
+                                leftListArray.splice(index, 1);
                                 zone.appendChild(currentDrag.node);
                             }
                         }
@@ -177,6 +254,7 @@ function renderLeftFriends(friends) {
     friendName.classList.add('container__item-text');
     friendImage.classList.add('container__item-img');
     friendBtn.classList.add('container__item-btn--add');
+    friendBlock.setAttribute('data-id', friends.id);
     friendBtn.setAttribute('data-id', friends.id);
 
     friendBlock.draggable = true;
@@ -201,6 +279,7 @@ function renderRightFriends(friends) {
     friendName.classList.add('container__item-text');
     friendImage.classList.add('container__item-img');
     friendBtn.classList.add('container__item-btn--delete');
+    friendBlock.setAttribute('data-id', friends.id);
     friendBtn.setAttribute('data-id', friends.id);
 
     friendBlock.draggable = true;
