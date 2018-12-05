@@ -53,14 +53,15 @@ auth()
             let leftListArray = info;
             let rightListArray = [];
             let currentDrag;
-            let arr = JSON.parse(storage.data);
-            let arr2 = JSON.parse(storage.data2);
 
-            if (arr === '' && arr2 === '') {
+            if (storage.data === '' && storage.data2 === '') {
                 for (let i = 0; i < leftListArray.length; i++) {
                     renderLeftFriends(leftListArray[i]);
                 }
             } else {
+                let arr = JSON.parse(storage.data);
+                let arr2 = JSON.parse(storage.data2);
+
                 firstZone.innerHTML = '';
 
                 for (let i = 0; i < arr.length; i++) {
