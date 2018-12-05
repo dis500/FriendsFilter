@@ -4,6 +4,8 @@ let leftFilterInput = document.querySelector('.search__input-left');
 let rightFilterInput = document.querySelector('.search__input-right');
 let firstZone = document.querySelector('.container__wrapper-left');
 let secondZone = document.querySelector('.container__wrapper-right');
+let saveBtn = document.querySelector('.footer__btn');
+let storage = localStorage;
 
 
 VK.init({
@@ -51,10 +53,30 @@ auth()
             let leftListArray = info;
             let rightListArray = [];
             let currentDrag;
+            let arr = JSON.parse(storage.data);
+            let arr2 = JSON.parse(storage.data2);
 
-            for (let i = 0; i < leftListArray.length; i++) {
-                 renderLeftFriends(leftListArray[i]);
+            if (arr === '' && arr2 === '') {
+                for (let i = 0; i < leftListArray.length; i++) {
+                    renderLeftFriends(leftListArray[i]);
+                }
+            } else {
+                firstZone.innerHTML = '';
+
+                for (let i = 0; i < arr.length; i++) {
+                    renderLeftFriends(arr[i]);
+                }
+
+                for (let i = 0; i < arr2.length; i++) {
+                    renderRightFriends(arr2[i]);
+                }
             }
+
+            saveBtn.addEventListener('click', function () {
+                storage.data = JSON.stringify(leftListArray);
+                storage.data2 = JSON.stringify(rightListArray);
+                console.log(storage.data);
+            });
 
             leftFilterInput.addEventListener('keyup', function () {
                 let value = leftFilterInput.value;
