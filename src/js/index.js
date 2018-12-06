@@ -54,13 +54,13 @@ auth()
             let rightListArray = [];
             let currentDrag;
 
-            if (storage.data === '' && storage.data2 === '') {
+            if (!storage.getItem('data') || !storage.getItem('data2')) {
                 for (let i = 0; i < leftListArray.length; i++) {
                     renderLeftFriends(leftListArray[i]);
                 }
             } else {
-                let arr = JSON.parse(storage.data);
-                let arr2 = JSON.parse(storage.data2);
+                let arr = JSON.parse(storage.getItem('data'));
+                let arr2 = JSON.parse(storage.getItem('data2'));
 
                 firstZone.innerHTML = '';
 
@@ -74,8 +74,10 @@ auth()
             }
 
             saveBtn.addEventListener('click', function () {
-                storage.data = JSON.stringify(leftListArray);
-                storage.data2 = JSON.stringify(rightListArray);
+               /* storage.data = JSON.stringify(leftListArray);
+                storage.data2 = JSON.stringify(rightListArray);*/
+                storage.setItem('data', JSON.stringify(leftListArray));
+                storage.setItem('data2', JSON.stringify(rightListArray));
                 console.log(storage.data);
             });
 
