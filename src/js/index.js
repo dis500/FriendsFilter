@@ -43,8 +43,8 @@ auth()
         return callAPI('users.get', {name_case: 'gen'});
     })
     .then(([me]) => {
-        let headerInfo = document.querySelector('.page-title');
-        headerInfo.textContent = `Друзья на странице ${me.first_name} ${me.last_name}`;
+       /* let headerInfo = document.querySelector('.page-title');
+        headerInfo.textContent = `Друзья на странице ${me.first_name} ${me.last_name}`;*/
 
         return callAPI('friends.get', {fields: 'city, country, photo_100' });
     })
