@@ -211,10 +211,19 @@ function addFriend (arr1, arr2) {
                 renderLeftFriends(renderedArray[i]);
             }
 
+            if (rightFilterInput.value) {
+                renderedArray = arr2.filter(function (friend) {
+                    return isMatching(`${friend.first_name} ${friend.last_name}`, rightFilterInput.value);
+                });
+
+            } else {
+                renderedArray = arr2;
+            }
+
             secondZone.innerHTML = '';
 
-            for (let i = 0; i < arr2.length; i++) {
-                renderRightFriends(arr2[i]);
+            for (let i = 0; i < renderedArray.length; i++) {
+                renderRightFriends(renderedArray[i]);
             }
         }
     });
@@ -302,10 +311,19 @@ function makeDnDRight(zone1, zone2, arr1, arr2) {
                 renderLeftFriends(renderedArray[i]);
             }
 
+            if (rightFilterInput.value) {
+                renderedArray = arr2.filter(function (friend) {
+                    return isMatching(`${friend.first_name} ${friend.last_name}`, rightFilterInput.value);
+                });
+
+            } else {
+                renderedArray = arr2;
+            }
+
             secondZone.innerHTML = '';
 
-            for (let i = 0; i < arr2.length; i++) {
-                renderRightFriends(arr2[i]);
+            for (let i = 0; i < renderedArray.length; i++) {
+                renderRightFriends(renderedArray[i]);
             }
         }
     });
